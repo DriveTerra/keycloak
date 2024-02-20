@@ -1,30 +1,6 @@
 version: '3'
 
 services:
-  keycloak:
-    image: jboss/keycloak
-    restart: always
-    container_name: keycloak
-    environment:
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin
-      KEYCLOAK_DB_USER: postgres
-      KEYCLOAK_DB_PASSWORD: postgres
-      DB_VENDOR: POSTGRES
-      DB_ADDR: postgres
-      DB_SCHEMA: public
-      DB_DATABASE: keycloak
-      DB_USER: postgres
-      DB_PASSWORD: postgres
-      DB_PORT: 5432
-    depends_on:
-      - postgres
-    ports:
-      - "8080:8080"
-      - "8443:8443"
-    networks:
-      - keycloak_network
-
   postgres:
     image: postgres:latest
     container_name: postgres
@@ -49,6 +25,30 @@ services:
       - "5050:80"
     depends_on:
       - postgres
+    networks:
+      - keycloak_network
+
+  keycloak:
+    image: jboss/keycloak
+    restart: always
+    container_name: keycloak
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      KEYCLOAK_DB_USER: postgres
+      KEYCLOAK_DB_PASSWORD: postgres
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_SCHEMA: public
+      DB_DATABASE: keycloak
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_PORT: 5432
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+      - "8443:8443"
     networks:
       - keycloak_network
 
