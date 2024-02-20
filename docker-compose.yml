@@ -35,14 +35,13 @@ services:
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
-      KEYCLOAK_DB_USER: postgres
-      KEYCLOAK_DB_PASSWORD: postgres
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
+      DB_PORT: 5432
       DB_DATABASE: keycloak
+      DB_SCHEMA: public
       DB_USER: postgres
       DB_PASSWORD: postgres
-      DB_PORT: 5432
     depends_on:
       - postgres
     ports:
