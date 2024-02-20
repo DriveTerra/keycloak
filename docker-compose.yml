@@ -13,20 +13,20 @@ services:
     networks:
       - keycloak_network
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com 
-      PGADMIN_DEFAULT_PASSWORD: admin
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
-    ports:
-      - "5050:80"
-    depends_on:
-      - postgres
-    networks:
-      - keycloak_network
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   container_name: pgadmin
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@admin.com 
+  #     PGADMIN_DEFAULT_PASSWORD: admin
+  #   volumes:
+  #     - pgadmin_data:/var/lib/pgadmin
+  #   ports:
+  #     - "5050:80"
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - keycloak_network
 
   keycloak:
     image: jboss/keycloak
@@ -39,7 +39,6 @@ services:
       KEYCLOAK_DB_PASSWORD: postgres
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
-      DB_SCHEMA: public
       DB_DATABASE: keycloak
       DB_USER: postgres
       DB_PASSWORD: postgres
@@ -54,7 +53,7 @@ services:
 
 volumes:
   postgres_data:
-  pgadmin_data:
+  # pgadmin_data:
 
 networks:
   keycloak_network:
