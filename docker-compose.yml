@@ -12,9 +12,11 @@ services:
       KEYCLOAK_DB_PASSWORD: postgres
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
+      DB_SCHEMA: public
       DB_DATABASE: keycloak
       DB_USER: postgres
       DB_PASSWORD: postgres
+      DB_PORT: 5432
     depends_on:
       - postgres
     ports:
