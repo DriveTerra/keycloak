@@ -29,7 +29,7 @@ services:
       - keycloak_network
 
   keycloak:
-    image: jboss/keycloak
+    image: quay.io/keycloak/keycloak:23.0.7
     restart: always
     container_name: keycloak
     environment:
@@ -44,9 +44,21 @@ services:
       DB_PASSWORD: postgres
     depends_on:
       - postgres
+    command: 
+          - start-dev
+          - --hostname-strict=false
+          - --hostname-strict-https=false
     ports:
       - "8080:8080"
       - "8443:8443"
+    healthcheck:
+      test: timeout 10s bash -c ':> /dev/tcp/127.0.0.1/8080' || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    volumes:
+      - /home/ec2-user/kc/src/main/resources/theme/driveterra/:/opt/keycloak/themes/driveterra/
     networks:
       - keycloak_network
 

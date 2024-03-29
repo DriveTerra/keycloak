@@ -1,6 +1,6 @@
 {
   "themes": [{
     "name" : "driveterra",
-    "types": [ "login", "email", "account" ]
+    "types": [ "login", "email", "account", "welcome", "common" ]
   }]
 }
